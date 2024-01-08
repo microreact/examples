@@ -1,12 +1,12 @@
 const BASE_URL = "https://microreact.org";
-const API_TOKEN = "";
+const MICROREACT_ACCESS_TOKEN = process.env.MICROREACT_ACCESS_TOKEN ?? "";
 
 async function apiRequest(
   path,
   data
 ) {
-  if (!API_TOKEN) {
-    throw new Error("Missing API_TOKEN");
+  if (!MICROREACT_ACCESS_TOKEN) {
+    throw new Error("Missing MICROREACT_ACCESS_TOKEN");
   }
 
   const response = await fetch(
@@ -15,7 +15,7 @@ async function apiRequest(
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8",
-        "Access-Token": API_TOKEN,
+        "Access-Token": MICROREACT_ACCESS_TOKEN,
       },
       body: JSON.stringify(data),
     },
@@ -70,7 +70,7 @@ async function createProject() {
     "schema": "https://microreact.org/schema/v1.json"
   };
   const response = await apiRequest(
-    "/api/projects/create/",
+    "/api/projects/create/?access=private",
     projectJson,
   )
   return response;
