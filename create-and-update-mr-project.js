@@ -1,10 +1,14 @@
 const BASE_URL = "https://microreact.org";
-const API_TOKEN = "ey...";
+const API_TOKEN = "";
 
 async function apiRequest(
   path,
   data
 ) {
+  if (!API_TOKEN) {
+    throw new Error("Missing API_TOKEN");
+  }
+
   const response = await fetch(
     new URL(path, BASE_URL),
     {
