@@ -114,8 +114,14 @@ async function addTreeToProject(projectJson) {
 
   // add a tree
   projectJson.trees["tree-1"] = {
+    // the ID of the tree file added above
     "file": treeFileId,
+
+    // the name of the metadata column which contains tree leaf labels
     "labelField": "id",
+
+    // used as a label for the tree panel
+    "title": "Tree",
   }
 }
 
